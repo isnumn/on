@@ -100,4 +100,168 @@
     /* 폼 스타일 */
     .form-group { margin-bottom: 15px; text-align: left; }
     .form-group label { display: block; margin-bottom: 5px; font-weight: 600; }
-    .form
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px;
+    }
+    .btn-submit {
+      background: var(--primary-color); color: white; border: none; padding: 12px 20px; border-radius: 6px; cursor: pointer; font-weight: bold; width: 100%;
+    }
+    .btn-submit:hover { opacity: 0.9; }
+
+    /* 굿즈 그리드 */
+    .goods-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+    .goods-item { background: #fdfdfd; border: 1px solid #eee; border-radius: 10px; padding: 15px; text-align: center; }
+    .goods-img { background: #e9ecef; height: 120px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; color: #888; }
+
+    /* 푸터 */
+    footer { text-align: center; padding: 30px; background: #222; color: #888; font-size: 14px; margin-top: 60px; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav-container">
+      <div class="logo">온결 <span>ON:GYEOL</span></div>
+      <nav class="nav-menu">
+        <button class="active" onclick="openTab('main')">메인</button>
+        <button onclick="openTab('vision')">기업 비전</button>
+        <button onclick="openTab('service')">서비스 & 신청</button>
+      </nav>
+    </div>
+  </header>
+
+  <div id="main" class="tab-content active">
+    <section class="hero">
+      <h1>지역의 숨은 가치를 ON하다</h1>
+      <p>온결은 지방 불균형 해소를 위해 지역의 문화예술 소재와 청년 창업가를 연결하는 상생 플랫폼입니다.</p>
+    </section>
+
+    <h2 class="section-title">📢 온결 최신 활동</h2>
+    <div class="activity-grid">
+      <div class="activity-card">
+        <h3>[30일 창업] 1기 팝업스토어 오픈</h3>
+        <p>지역 공예 소재를 활용한 디저트 카페가 빈 점포를 활용해 30일간의 테스트 창업을 시작했습니다.</p>
+      </div>
+      <div class="activity-card">
+        <h3>[주간지] 온결 8월호 발행</h3>
+        <p>이번 주 아날로그 주간지에서는 충청도 지역의 잊혀진 소리 문화예술 소재를 조명합니다.</p>
+      </div>
+      <div class="activity-card">
+        <h3>[메타버스] ZEP 온결 맵 런칭</h3>
+        <p>가상 공간에서도 지역 문화예술 전시와 팝업스토어를 미리 체험해볼 수 있습니다.</p>
+      </div>
+    </div>
+
+    <div class="social-banner">
+      <h3>온결의 가상 공간과 일상을 방문해보세요</h3>
+      <p style="color: #666; margin-top: 5px;">ZEP 메타버스 맵에서 가상 팝업스토어를 체험하고 인스타그램에서 최신 소식을 받아보세요.</p>
+      <div class="social-buttons">
+        <a href="https://zep.us" target="_blank" class="btn-external btn-zep">🎮 ZEP 메타버스 입장하기</a>
+        <a href="https://instagram.com" target="_blank" class="btn-external btn-insta">📸 공식 인스타그램 구경하기</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="vision" class="tab-content">
+    <div class="vision-box">
+      <span class="keyword-tag">#지방불균형해소</span>
+      <span class="keyword-tag">#메세나</span>
+      <span class="keyword-tag">#상생기업</span>
+      <h2 style="margin-bottom: 20px; color: var(--secondary-color);">연결을 ON(활성화)하는 사회적 기업 '온결'</h2>
+      <p style="margin-bottom: 15px;">
+        '온결'은 끊어진 지역과 대중, 그리고 창업가를 따뜻하게 잇는다는 의미를 담고 있습니다. 우리는 소멸 위기에 놓인 지역의 고유한 문화예술 소재를 발굴하여 지속 가능한 상업 아이템으로 재탄생시킵니다.
+      </p>
+      <p style="margin-bottom: 15px;">
+        문화예술을 지원하는 <strong>메세나(Mécénat) 정신</strong>을 기반으로 벤처기업 및 예비 창업자에게 아이디어를 제공하고, 빈 점포 중개를 통해 위험 부담 없는 <strong>30일 시험 창업</strong>을 지원합니다.
+      </p>
+      <p>
+        테스트 기간 이후 정식 창업 시 관련 기업 및 투자 매개체로 연결하여, 지역 경제를 살리고 지속 가능한 상생 생태계를 구축합니다.
+      </p>
+    </div>
+  </div>
+
+  <div id="service" class="tab-content">
+    
+    <div class="service-card">
+      <h3>🏬 30일 시험 창업 지원 서비스 신청</h3>
+      <p style="margin-bottom: 15px; color: #666;">지역 문화예술 아이템과 빈 점포를 제공받아 30일간 팝업 매장을 직접 운영해보세요.</p>
+      <form onsubmit="alert('30일 시험 창업 신청이 완료되었습니다!'); return false;">
+        <div class="form-group">
+          <label>신청자/팀명</label>
+          <input type="text" placeholder="이름 또는 팀명을 입력하세요" required>
+        </div>
+        <div class="form-group">
+          <label>관심 지역/소재</label>
+          <select>
+            <option>지역 전통 공예/디자인</option>
+            <option>지역 로컬 푸드/식음료</option>
+            <option>지역 스토리/미디어 콘텐츠</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>연락처</label>
+          <input type="tel" placeholder="010-0000-0000" required>
+        </div>
+        <button type="submit" class="btn-submit">시험 창업 지원하기</button>
+      </form>
+    </div>
+
+    <div class="service-card">
+      <h3>📰 온결 아날로그 주간지 구독</h3>
+      <p style="margin-bottom: 15px; color: #666;">매주 지역의 숨은 문화예술 이야기와 창업 종사자들의 인터뷰를 종이 신문으로 받아보세요.</p>
+      <form onsubmit="alert('주간지 구독 신청이 완료되었습니다!'); return false;">
+        <div class="form-group">
+          <label>배송받을 주소</label>
+          <input type="text" placeholder="주소를 입력하세요" required>
+        </div>
+        <div class="form-group">
+          <label>이메일 주소</label>
+          <input type="email" placeholder="example@email.com" required>
+        </div>
+        <button type="submit" class="btn-submit" style="background-color: var(--secondary-color);">주간지 구독 신청 (월 5,000원)</button>
+      </form>
+    </div>
+
+    <div class="service-card">
+      <h3>🎨 온결 로컬 굿즈 샵</h3>
+      <p style="margin-bottom: 20px; color: #666;">지역 예술가들과 협업하여 제작한 상생 굿즈입니다. 수익금 일부는 지역 문화 발전에 쓰입니다.</p>
+      <div class="goods-grid">
+        <div class="goods-item">
+          <div class="goods-img">🖼️ 패브릭 포스터</div>
+          <h4>지역 풍경 아트웍</h4>
+          <p style="color: var(--primary-color); font-weight: bold; margin-top: 5px;">15,000원</p>
+          <button onclick="alert('장바구니에 담겼습니다!')" style="margin-top: 8px; width: 100%; cursor: pointer;">구매하기</button>
+        </div>
+        <div class="goods-item">
+          <div class="goods-img">☕ 로컬 도자기 컵</div>
+          <h4>장인 핸드메이드 컵</h4>
+          <p style="color: var(--primary-color); font-weight: bold; margin-top: 5px;">22,000원</p>
+          <button onclick="alert('장바구니에 담겼습니다!')" style="margin-top: 8px; width: 100%; cursor: pointer;">구매하기</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>© 2026 사회적기업 온결 (ON:GYEOL). All rights reserved.</p>
+    <p style="font-size: 12px; margin-top: 5px;">본 웹사이트는 모의창업 프로젝트 목적으로 제작되었습니다.</p>
+  </footer>
+
+  <script>
+    function openTab(tabName) {
+      // 모든 탭 내용 숨기기
+      const tabContents = document.querySelectorAll('.tab-content');
+      tabContents.forEach(content => content.classList.remove('active'));
+
+      // 모든 버튼 활성화 해제
+      const navButtons = document.querySelectorAll('.nav-menu button');
+      navButtons.forEach(button => button.classList.remove('active'));
+
+      // 선택한 탭과 버튼 활성화
+      document.getElementById(tabName).classList.add('active');
+      event.currentTarget.classList.add('active');
+    }
+  </script>
+</body>
+</html>
