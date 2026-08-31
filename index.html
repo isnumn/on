@@ -3,289 +3,292 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>온결 | ON:GYEOL — 지역의 숨은 가치를 ON하다</title>
+  <title>온결 (ON:GYEOL) — 지역의 숨결, 시대를 켜다</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;500;700&family=Pretendard:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Pretendard:wght@300;400;500;600&display=swap" rel="stylesheet">
   
   <style>
-    /* 1. 글로벌 시그니처 테마 (딥 다크 & 따뜻한 불꽃 스펙트럼) */
+    /* 1. 한국적 감성의 컬러 팔레트 (한지, 먹, 따뜻한 주황, 여백) */
     :root {
-      --bg-dark: #0a0c10;
-      --card-bg: rgba(22, 27, 34, 0.7);
-      --accent-warm: #ff5e36;
-      --accent-glow: #ff8a65;
-      --accent-subtle: #2d1810;
-      --text-bright: #f0f6fc;
-      --text-muted: #8b949e;
-      --border-color: rgba(255, 255, 255, 0.08);
+      --bg-paper: #fcfbf7;       /* 따뜻한 한지 쌀색 */
+      --card-bg: #ffffff;
+      --text-ink: #1c1c1c;       /* 짙은 먹색 */
+      --text-sub: #666059;       /* 은은한 흙빛 회색 */
+      --accent-on: #d9532f;      /* 온기를 켜는 붉은 주황빛 */
+      --accent-light: #fbebe6;   /* 은은한 연홍빛 */
+      --border-line: #eae6df;    /* 절제된 여백 구분선 */
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    
+
     body {
-      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      background-color: var(--bg-dark);
-      color: var(--text-bright);
-      line-height: 1.7;
+      font-family: 'Pretendard', -apple-system, sans-serif;
+      background-color: var(--bg-paper);
+      color: var(--text-ink);
+      line-height: 1.8;
+      word-break: keep-all;
       overflow-x: hidden;
     }
 
-    /* 감성적인 명조체 헤딩 클래스 */
-    .serif { font-family: 'Noto Serif KR', serif; }
+    /* 서정적인 명조체 (제목 및 강조 문구용) */
+    .myeongjo {
+      font-family: 'Nanum Myeongjo', serif;
+    }
 
-    /* 2. 네비게이션 헤더 */
+    /* 2. 네비게이션 헤더 (여백 중심) */
     header {
-      background: rgba(10, 12, 16, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border-color);
+      background: rgba(252, 251, 247, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-line);
       position: sticky;
       top: 0;
       z-index: 1000;
     }
     .nav-container {
-      max-width: 1200px;
+      max-width: 1080px;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px;
+      padding: 24px 20px;
     }
     .logo {
       font-size: 22px;
-      font-weight: 800;
+      font-weight: 700;
       letter-spacing: -0.5px;
-      background: linear-gradient(135deg, #fff 0%, var(--accent-glow) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: var(--text-ink);
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
-    .logo-badge {
-      font-size: 10px;
-      padding: 2px 8px;
-      border-radius: 12px;
-      background: var(--accent-subtle);
-      color: var(--accent-warm);
-      border: 1px solid var(--accent-warm);
-      letter-spacing: 1px;
+    .logo-dot {
+      width: 7px;
+      height: 7px;
+      background-color: var(--accent-on);
+      border-radius: 50%;
+      display: inline-block;
+      box-shadow: 0 0 6px var(--accent-on);
     }
     .nav-menu button {
       background: none;
       border: none;
       font-size: 15px;
-      font-weight: 500;
-      margin-left: 28px;
+      margin-left: 32px;
       cursor: pointer;
-      color: var(--text-muted);
-      transition: all 0.3s ease;
-      position: relative;
+      color: var(--text-sub);
+      transition: color 0.3s;
+      font-weight: 400;
     }
     .nav-menu button.active, .nav-menu button:hover {
-      color: var(--text-bright);
-    }
-    .nav-menu button.active::after {
-      content: '';
-      position: absolute;
-      bottom: -6px;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: var(--accent-warm);
-      box-shadow: 0 0 8px var(--accent-warm);
+      color: var(--accent-on);
+      font-weight: 600;
     }
 
-    /* 3. 탭 컨텐츠 컨테이너 */
-    .tab-content { display: none; max-width: 1200px; margin: 0 auto; padding: 60px 20px; animation: fadeIn 0.6s ease; }
+    /* 3. 탭 컨텐츠 구역 */
+    .tab-content { display: none; max-width: 1080px; margin: 0 auto; padding: 60px 20px 100px; animation: fadeIn 0.8s ease; }
     .tab-content.active { display: block; }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
+      from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
     /* 4. 메인 (HERO) 섹션 */
     .hero {
-      padding: 100px 20px;
+      padding: 90px 0 70px;
       text-align: center;
-      position: relative;
-      border-radius: 24px;
-      background: radial-gradient(circle at 50% 30%, rgba(255, 94, 54, 0.15) 0%, rgba(10, 12, 16, 0) 70%);
-      border: 1px solid var(--border-color);
-      margin-bottom: 60px;
+      border-bottom: 1px solid var(--border-line);
+      margin-bottom: 70px;
     }
-    .hero-tag {
-      display: inline-block;
+    .hero-sub {
       font-size: 13px;
-      letter-spacing: 2px;
-      color: var(--accent-warm);
+      letter-spacing: 3px;
+      color: var(--accent-on);
       text-transform: uppercase;
-      margin-bottom: 20px;
-      font-weight: 600;
+      margin-bottom: 24px;
+      font-weight: 500;
     }
     .hero h1 {
-      font-size: 48px;
+      font-size: 40px;
       font-weight: 700;
-      line-height: 1.3;
-      margin-bottom: 24px;
-      word-break: keep-all;
+      line-height: 1.5;
+      margin-bottom: 28px;
+      color: var(--text-ink);
     }
     .hero p {
-      font-size: 18px;
-      color: var(--text-muted);
-      max-width: 720px;
-      margin: 0 auto 40px auto;
-      word-break: keep-all;
+      font-size: 17px;
+      color: var(--text-sub);
+      max-width: 680px;
+      margin: 0 auto;
+      font-weight: 300;
     }
 
-    /* 5. 감성 카드 & 그리드 */
+    /* 5. 한국적 그리드 & 서정적 리스트 */
     .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      margin-bottom: 30px;
+      margin-bottom: 40px;
+      text-align: center;
     }
-    .section-title { font-size: 28px; font-weight: 700; }
+    .section-header h2 {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--text-ink);
+      margin-bottom: 8px;
+    }
+    .section-header p {
+      font-size: 14px;
+      color: var(--text-sub);
+    }
 
     .grid-3 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px;
-      margin-bottom: 60px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+      margin-bottom: 80px;
     }
-    
-    .glass-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 16px;
-      padding: 32px;
-      backdrop-filter: blur(10px);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .glass-card:hover {
-      border-color: rgba(255, 94, 54, 0.4);
-      transform: translateY(-4px);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.5);
-    }
-    .card-tag {
-      font-size: 12px;
-      color: var(--accent-warm);
-      font-weight: 600;
-      margin-bottom: 12px;
-    }
-    .glass-card h3 { font-size: 20px; margin-bottom: 12px; font-weight: 600; }
-    .glass-card p { color: var(--text-muted); font-size: 15px; }
 
-    /* 소셜 배너 (메타버스 & 인스타) */
-    .social-section {
-      background: linear-gradient(180deg, rgba(22, 27, 34, 0) 0%, rgba(255, 94, 54, 0.05) 100%);
-      border: 1px solid var(--border-color);
-      border-radius: 20px;
-      padding: 48px 32px;
+    .paper-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-line);
+      padding: 36px 28px;
+      border-radius: 4px; /* 지나친 라운딩 대신 절제된 사각 미학 */
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+    }
+    .paper-card:hover {
+      border-color: var(--accent-on);
+      transform: translateY(-4px);
+    }
+    .card-category {
+      font-size: 12px;
+      color: var(--accent-on);
+      letter-spacing: 1px;
+      margin-bottom: 14px;
+      font-weight: 600;
+    }
+    .paper-card h3 {
+      font-size: 19px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: var(--text-ink);
+    }
+    .paper-card p {
+      font-size: 14.5px;
+      color: var(--text-sub);
+      font-weight: 300;
+    }
+
+    /* 서정적인 소셜 배너 */
+    .social-box {
+      background-color: #f5f2eb;
+      border: 1px solid var(--border-line);
+      padding: 50px 30px;
       text-align: center;
+      border-radius: 4px;
     }
     .social-btn-group {
       display: flex;
       justify-content: center;
       gap: 16px;
-      margin-top: 28px;
+      margin-top: 32px;
       flex-wrap: wrap;
     }
-    .btn-glow {
-      padding: 14px 32px;
-      border-radius: 30px;
-      font-weight: 600;
-      font-size: 15px;
-      color: #fff;
+    .btn-oriental {
+      padding: 13px 28px;
+      border-radius: 2px;
+      font-size: 14px;
       text-decoration: none;
-      transition: all 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
+      transition: all 0.3s;
+      font-weight: 500;
+      letter-spacing: -0.2px;
     }
     .btn-zep {
-      background: #4f46e5;
-      box-shadow: 0 0 20px rgba(79, 70, 229, 0.4);
+      background: var(--text-ink);
+      color: #fff;
     }
     .btn-insta {
-      background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366);
-      box-shadow: 0 0 20px rgba(220, 39, 67, 0.4);
+      background: transparent;
+      color: var(--text-ink);
+      border: 1px solid var(--text-ink);
     }
-    .btn-glow:hover { transform: scale(1.05); }
+    .btn-oriental:hover { opacity: 0.8; }
 
-    /* 6. 비전 탭 고급 스타일 */
-    .vision-container {
-      max-width: 800px;
+    /* 6. 기업 비전 (스토리텔링) */
+    .story-container {
+      max-width: 720px;
       margin: 0 auto;
-      line-height: 2;
+      padding: 20px 0;
     }
-    .keyword-pill {
-      display: inline-block;
-      padding: 6px 16px;
-      border-radius: 20px;
-      background: rgba(255, 94, 54, 0.1);
-      color: var(--accent-warm);
-      border: 1px solid rgba(255, 94, 54, 0.2);
+    .story-tag {
+      color: var(--accent-on);
       font-size: 14px;
       font-weight: 600;
-      margin-right: 8px;
-      margin-bottom: 24px;
+      margin-bottom: 12px;
+      display: block;
     }
-    .quote-box {
-      border-left: 3px solid var(--accent-warm);
-      padding-left: 24px;
-      margin: 32px 0;
-      font-size: 20px;
-      color: #fff;
+    .story-title {
+      font-size: 32px;
+      line-height: 1.5;
+      margin-bottom: 36px;
+      color: var(--text-ink);
+    }
+    .story-body p {
+      font-size: 16px;
+      color: #444;
+      margin-bottom: 24px;
+      font-weight: 300;
+    }
+    .divider {
+      width: 40px;
+      height: 1px;
+      background: var(--accent-on);
+      margin: 40px 0;
     }
 
-    /* 7. 입력 폼 감성 스타일 */
-    .form-box {
+    /* 7. 서비스 & 신청 (간결한 폼) */
+    .form-wrapper {
       background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 20px;
-      padding: 36px;
+      border: 1px solid var(--border-line);
+      padding: 40px;
       margin-bottom: 40px;
+      border-radius: 4px;
     }
-    .form-group { margin-bottom: 20px; }
-    .form-group label { display: block; font-size: 14px; color: var(--text-muted); margin-bottom: 8px; }
+    .form-group { margin-bottom: 24px; }
+    .form-group label { display: block; font-size: 13.5px; color: var(--text-sub); margin-bottom: 8px; }
     .form-group input, .form-group select {
       width: 100%;
-      padding: 14px;
-      background: rgba(10, 12, 16, 0.6);
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      color: #fff;
-      font-size: 15px;
+      padding: 12px 14px;
+      background: var(--bg-paper);
+      border: 1px solid var(--border-line);
+      border-radius: 2px;
+      font-size: 14.5px;
+      color: var(--text-ink);
       outline: none;
       transition: border 0.3s;
     }
     .form-group input:focus, .form-group select:focus {
-      border-color: var(--accent-warm);
+      border-color: var(--accent-on);
     }
-    .btn-action {
+    .btn-submit-oriental {
       width: 100%;
-      padding: 16px;
-      border-radius: 10px;
+      padding: 15px;
+      background: var(--accent-on);
+      color: white;
       border: none;
-      background: var(--accent-warm);
-      color: #fff;
-      font-weight: 700;
-      font-size: 16px;
+      font-size: 15px;
+      font-weight: 500;
       cursor: pointer;
-      transition: opacity 0.3s;
+      transition: background 0.3s;
     }
-    .btn-action:hover { opacity: 0.9; }
+    .btn-submit-oriental:hover { background: #b84122; }
 
     /* 푸터 */
     footer {
-      border-top: 1px solid var(--border-color);
-      padding: 40px 20px;
+      border-top: 1px solid var(--border-line);
+      padding: 50px 20px;
       text-align: center;
-      color: var(--text-muted);
-      font-size: 14px;
-      margin-top: 80px;
+      color: var(--text-sub);
+      font-size: 13px;
     }
   </style>
 </head>
@@ -293,143 +296,145 @@
 
   <header>
     <div class="nav-container">
-      <div class="logo">
-        ON:GYEOL
-        <span class="logo-badge">SOCIAL IMPACT</span>
+      <div class="logo myeongjo">
+        온결 <span class="logo-dot"></span>
       </div>
       <nav class="nav-menu">
-        <button class="active" onclick="openTab('main')">메인</button>
-        <button onclick="openTab('vision')">기업 스토리</button>
-        <button onclick="openTab('service')">지원 & 구독</button>
+        <button class="active" onclick="openTab('main')">첫 화면</button>
+        <button onclick="openTab('vision')">기업 이야깃거리</button>
+        <button onclick="openTab('service')">신청 및 구독</button>
       </nav>
     </div>
   </header>
 
   <div id="main" class="tab-content active">
     <section class="hero">
-      <span class="hero-tag">지방불균형 해소를 위한 솔루션</span>
-      <h1 class="serif">지역의 잊혀진 숨결,<br><span style="color: var(--accent-warm);">창업의 빛</span>으로 켜다 (ON)</h1>
-      <p>온결은 지역 고유의 문화예술 소재를 발굴하여 벤처 창업가와 연결하고,<br>30일간의 위험 없는 시험 창업을 통해 지역과 함께 상생합니다.</p>
+      <div class="hero-sub">지방불균형 해소를 위한 상생 플랫폼</div>
+      <h1 class="myeongjo">
+        지역의 잊혀진 숨결,<br>
+        연결의 온기(溫)로 켜다 (ON)
+      </h1>
+      <p>
+        사회적 기업 '온결'은 숨겨진 지역 고유의 문화예술 소재를 발굴하여<br>
+        청년 창업가와 연결하고, 30일간의 따뜻한 시험 창업을 건네어 지역을 살립니다.
+      </p>
     </section>
 
     <div class="section-header">
-      <h2 class="section-title serif">최신 온결 프로젝트</h2>
-      <span style="color: var(--text-muted); font-size: 14px;">ON:GYEOL ARCHIVE</span>
+      <h2 class="myeongjo">온결이 엮어내는 활동</h2>
+      <p>ON:GYEOL ARCHIVE</p>
     </div>
 
     <div class="grid-3">
-      <div class="glass-card">
-        <div class="card-tag">30-DAY POP-UP</div>
-        <h3>[충남 부여] 백제 토기 재해석 팝업</h3>
-        <p>빈 점포를 매개로 한 30일간의 시험 창업. 지역 토기 장인의 소스에 현대적 디자인을 더한 카페 브랜드의 첫 도전을 지원합니다.</p>
+      <div class="paper-card">
+        <div class="card-category">30일 시험 창업</div>
+        <h3 class="myeongjo">충남 부여, 백제 토기의 재해석</h3>
+        <p>비어있던 낡은 점포를 빌려 부여 소장 장인의 토기 문양을 다채로운 디저트 매장에 입혔습니다. 30일간의 작은 실험이 시작됩니다.</p>
       </div>
-      <div class="glass-card">
-        <div class="card-tag">ANALOG JOURNAL</div>
-        <h3>주간 온결 12호 : 소리의 공간</h3>
-        <p>동해안 마을의 사라져가는 어로요(漁撈謠)를 수집하여 현대 음원 스튜디오 굿즈로 융합한 청년 팀의 기획 스토리를 담았습니다.</p>
+      <div class="paper-card">
+        <div class="card-category">아날로그 주간지</div>
+        <h3 class="myeongjo">주간 온결 : 어로요의 소리</h3>
+        <p>동해안 마을에서 스러져가던 어로요(漁撈謠) 가사를 아날로그 종이 신문에 담아 청년 아티스트들의 음악 기획 아이디어로 이어줍니다.</p>
       </div>
-      <div class="glass-card">
-        <div class="card-tag">METAVERSE ZEP</div>
-        <h3>가상 가야 문화 거리 런칭</h3>
-        <p>시공간의 제약 없이 온결의 팝업스토어를 체험하고 지역 소상공인 아이템을 미리 만나보는 가상 생태계입니다.</p>
+      <div class="paper-card">
+        <div class="card-category">가상 공간 체험</div>
+        <h3 class="myeongjo">ZEP 가상 팝업스토어</h3>
+        <p>시공간의 한계를 넘어 가상 세계에서 먼저 지역 문화 아이템을 조명하고, 전국 대중과의 상생적 연결점을 만들어냅니다.</p>
       </div>
     </div>
 
-    <div class="social-section">
-      <h2 class="serif" style="font-size: 24px; margin-bottom: 10px;">가상 세계에서 현실로 이어지는 온결의 상생</h2>
-      <p style="color: var(--text-muted);">ZEP 메타버스에서 가상 팝업스토어를 먼저 체험하고, 인스타그램에서 온결의 여정을 함께하세요.</p>
+    <div class="social-box">
+      <h3 class="myeongjo" style="font-size: 22px; margin-bottom: 12px;">메타버스와 일상에서 만나는 온결</h3>
+      <p style="color: var(--text-sub); font-size: 15px;">가상 점포에서 문화 소재를 미리 거닐어보고, 공식 인스타그램에서 최신 소식을 확인해보세요.</p>
       <div class="social-btn-group">
-        <a href="https://zep.us" target="_blank" class="btn-glow btn-zep">🎮 ZEP 가상 팝업스토어 입장</a>
-        <a href="https://instagram.com" target="_blank" class="btn-glow btn-insta">📸 공식 인스타그램 팔로우</a>
+        <a href="https://zep.us" target="_blank" class="btn-oriental btn-zep">🎮 ZEP 가상 팝업스토어 거닐기</a>
+        <a href="https://instagram.com" target="_blank" class="btn-oriental btn-insta">📸 공식 인스타그램 살펴보기</a>
       </div>
     </div>
   </div>
 
   <div id="vision" class="tab-content">
-    <div class="vision-container">
-      <span class="keyword-pill">#지방불균형해소</span>
-      <span class="keyword-pill">#메세나_Mécénat</span>
-      <span class="keyword-pill">#상생비즈니스</span>
-      
-      <h1 class="serif" style="font-size: 36px; margin-bottom: 24px; color: #fff;">
-        연결을 ON(활성화)하여<br>지역의 온기를 잇다
+    <div class="story-container">
+      <span class="story-tag">BRAND STORY</span>
+      <h1 class="myeongjo story-title">
+        끊어진 결을 잇고,<br>
+        따뜻한 스위치를 켭니다.
       </h1>
 
-      <div class="quote-box serif">
-        "지방의 소멸은 문화의 소멸이 아닙니다.<br>우리는 잊혀가는 유산에 사업의 숨결을 불어넣습니다."
+      <div class="story-body">
+        <p>
+          <strong>'온결(ON:GYEOL)'</strong>은 소멸해 가는 지역 문화의 숨결을 켜다(ON)라는 뜻과, 끊어진 사회적 온기(溫)의 결을 다시 잇는다는 소명을 함께 담고 있습니다.
+        </p>
+        <p>
+          우리는 지역의 불균형을 물질적인 결핍이 아닌 '문화와 아이디어의 끊어짐'에서 찾았습니다. 예술을 후원하는 <strong>메세나(Mécénat) 정신</strong>에 기반하여, 스러져가는 지방의 소재를 빛나는 비즈니스 아이템으로 전환시킵니다.
+        </p>
+        <div class="divider"></div>
+        <p>
+          창업 희망자에게 빈 점포를 중개하여 <strong>'30일간의 위험 없는 시험 창업'</strong> 기회를 제공합니다. 테스트 이후 가능성을 본 청년들에게는 실제 기업 및 투자 매개체로의 상생 연결을 책임집니다.
+        </p>
+        <p style="color: var(--accent-on); font-weight: 500;">
+          지역이 살아나고, 청년이 뿌리내리며, 대중이 문화를 향유하는 순환. 이것이 온결이 만들어가는 아름다운 상생 생태계입니다.
+        </p>
       </div>
-
-      <p style="color: var(--text-muted); margin-bottom: 20px;">
-        <strong>'온결(ON:GYEOL)'</strong>은 스위치를 켜듯 연결을 활성화(ON)한다는 의미와 따뜻한 결(온결)을 만들어낸다는 뜻을 담고 있습니다. 
-      </p>
-      <p style="color: var(--text-muted); margin-bottom: 20px;">
-        우리는 고유한 문화예술을 가졌지만 소외된 지역을 찾아갑니다. 메세나 정신을 바탕으로 지역 고유의 소재를 발굴하여 창업 희망자에게 창의적인 비즈니스 모델로 제공합니다.
-      </p>
-      <p style="color: var(--text-muted);">
-        방치된 빈 점포를 중개하여 <strong>30일간의 위험 없는 테스트 창업</strong>을 돕고, 정식 창업 시 관련 기업 및 투자 매개체로 연결함으로써, 지역 경제가 스스로 숨 쉴 수 있는 선순환 선상 모델을 지속해 나갑니다.
-      </p>
     </div>
   </div>
 
   <div id="service" class="tab-content">
     
-    <div class="form-box">
-      <span class="card-tag">SOLUTIONS 01</span>
-      <h2 class="serif" style="font-size: 24px; margin-bottom: 8px;">30일 시험 창업 지원 서비스 신청</h2>
-      <p style="color: var(--text-muted); margin-bottom: 24px;">지역의 문화예술 소재 아이템과 공간을 중개받아 부담 없이 30일간의 팝업 매장을 검증해 보세요.</p>
+    <div class="form-wrapper">
+      <h2 class="myeongjo" style="font-size: 22px; margin-bottom: 8px;">30일 시험 창업 지원 신청</h2>
+      <p style="color: var(--text-sub); font-size: 14px; margin-bottom: 28px;">지역의 고유한 소재와 빈 공간을 매개로 30일간 당신만의 사업을 안전하게 시뮬레이션해 보세요.</p>
       
-      <form onsubmit="alert('30일 시험 창업 신청서가 접수되었습니다.'); return false;">
+      <form onsubmit="alert('30일 시험 창업 신청서가 온결에 접수되었습니다.'); return false;">
         <div class="form-group">
-          <label>신청자 / 팀 이름</label>
-          <input type="text" placeholder="예: 온결 1기 예비창업팀" required>
+          <label>신청자 또는 팀 이름</label>
+          <input type="text" placeholder="성함 또는 창업팀명을 적어주세요" required>
         </div>
         <div class="form-group">
-          <label>희망 문화예술 테마</label>
+          <label>희망 문화예술 소재 분야</label>
           <select>
-            <option>지역 전통 공예 & 현대 디자인</option>
-            <option>로컬 식음료(F&B) & 농산물 브랜딩</option>
-            <option>지역 음향/스토리 미디어 콘텐츠</option>
+            <option>지역 전통 공예 및 현대 디자인 융합</option>
+            <option>로컬 푸드 및 식음료(F&B) 브랜딩</option>
+            <option>지역 음악·스토리 미디어 콘텐츠</option>
           </select>
         </div>
         <div class="form-group">
-          <label>대표자 연락처</label>
+          <label>연락처</label>
           <input type="tel" placeholder="010-0000-0000" required>
         </div>
-        <button type="submit" class="btn-action">시험 창업 지원 신청하기</button>
+        <button type="submit" class="btn-submit-oriental">30일 시험 창업 지원하기</button>
       </form>
     </div>
 
-    <div class="form-box">
-      <span class="card-tag">SOLUTIONS 02</span>
-      <h2 class="serif" style="font-size: 24px; margin-bottom: 8px;">아날로그 주간지 [온결] 구독</h2>
-      <p style="color: var(--text-muted); margin-bottom: 24px;">매주 지역의 숨겨진 장인, 문화예술 소재, 청년 창업 인터뷰가 담긴 아날로그 종이 신문을 배송해 드립니다.</p>
+    <div class="form-wrapper">
+      <h2 class="myeongjo" style="font-size: 22px; margin-bottom: 8px;">아날로그 주간지 [온결] 정기구독</h2>
+      <p style="color: var(--text-sub); font-size: 14px; margin-bottom: 28px;">매주 지역의 장인, 숨은 문화 이야기, 청년 창업 인터뷰가 실린 종이 주간지를 우편으로 발송해 드립니다.</p>
       
       <form onsubmit="alert('주간지 구독 신청이 완료되었습니다.'); return false;">
         <div class="form-group">
-          <label>배송 주소</label>
-          <input type="text" placeholder="신문 및 굿즈를 수령할 주소" required>
+          <label>주간지를 받아보실 주소</label>
+          <input type="text" placeholder="상세 주소를 입력해주세요" required>
         </div>
         <div class="form-group">
-          <label>이메일</label>
+          <label>이메일 주소</label>
           <input type="email" placeholder="example@ongyeol.com" required>
         </div>
-        <button type="submit" class="btn-action" style="background: var(--secondary-color); border: 1px solid var(--border-color);">주간지 정기구독 신청 (월 5,000원)</button>
+        <button type="submit" class="btn-submit-oriental" style="background: var(--text-ink);">아날로그 주간지 구독하기 (월 5,000원)</button>
       </form>
     </div>
 
     <div>
-      <span class="card-tag">SOLUTIONS 03</span>
-      <h2 class="serif" style="font-size: 24px; margin-bottom: 20px;">온결 로컬 상생 굿즈</h2>
+      <h2 class="myeongjo" style="font-size: 22px; margin-bottom: 20px;">온결의 상생 로컬 굿즈</h2>
       <div class="grid-3">
-        <div class="glass-card" style="text-align: center;">
-          <div style="height: 120px; background: rgba(255,255,255,0.05); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 32px; margin-bottom: 16px;">🖼️</div>
-          <h3>지역 아카이브 패브릭 포스터</h3>
-          <p style="color: var(--accent-warm); font-weight: bold; margin-top: 8px;">18,000원</p>
+        <div class="paper-card" style="text-align: center;">
+          <div style="font-size: 32px; margin-bottom: 12px;">🖼️</div>
+          <h3 class="myeongjo" style="font-size: 17px;">지역 아카이브 패브릭 포스터</h3>
+          <p style="color: var(--accent-on); font-weight: 600; margin-top: 6px;">18,000원</p>
         </div>
-        <div class="glass-card" style="text-align: center;">
-          <div style="height: 120px; background: rgba(255,255,255,0.05); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 32px; margin-bottom: 16px;">☕</div>
-          <h3>장인 콜라보 도자기 세트</h3>
-          <p style="color: var(--accent-warm); font-weight: bold; margin-top: 8px;">24,000원</p>
+        <div class="paper-card" style="text-align: center;">
+          <div style="font-size: 32px; margin-bottom: 12px;">☕</div>
+          <h3 class="myeongjo" style="font-size: 17px;">지역 장인 흙 찻잔 세트</h3>
+          <p style="color: var(--accent-on); font-weight: 600; margin-top: 6px;">24,000원</p>
         </div>
       </div>
     </div>
@@ -437,8 +442,8 @@
   </div>
 
   <footer>
-    <p style="margin-bottom: 8px;">© 2026 온결 ON:GYEOL. All rights reserved.</p>
-    <p style="font-size: 12px; color: rgba(255,255,255,0.3);">지방 불균형 해소를 위한 고교 모의창업 프로젝트 플랫폼</p>
+    <p class="myeongjo" style="font-size: 15px; margin-bottom: 6px; color: var(--text-ink);">사회적 기업 온결 (ON:GYEOL)</p>
+    <p>© 2026 ON:GYEOL. All rights reserved. — 지방불균형 해소 모의창업 프로젝트</p>
   </footer>
 
   <script>
