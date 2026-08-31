@@ -3,240 +3,433 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>온결 (ON:GYEOL) | 지역과 창업을 ON하다</title>
+  <title>온결 | ON:GYEOL — 지역의 숨은 가치를 ON하다</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;500;700&family=Pretendard:wght@300;400;600;800&display=swap" rel="stylesheet">
+  
   <style>
-    /* 1. 기본 스타일 및 컬러 팔레트 (따뜻함과 연결을 상징하는 오렌지/클린 테마) */
+    /* 1. 글로벌 시그니처 테마 (딥 다크 & 따뜻한 불꽃 스펙트럼) */
     :root {
-      --primary-color: #ff6b4a; /* 온결 대표 컬러 (ON의 활성화 느낌) */
-      --secondary-color: #2c3e50;
-      --bg-light: #fafafa;
-      --text-main: #333333;
+      --bg-dark: #0a0c10;
+      --card-bg: rgba(22, 27, 34, 0.7);
+      --accent-warm: #ff5e36;
+      --accent-glow: #ff8a65;
+      --accent-subtle: #2d1810;
+      --text-bright: #f0f6fc;
+      --text-muted: #8b949e;
+      --border-color: rgba(255, 255, 255, 0.08);
     }
-    
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Pretendard', 'Segoe UI', sans-serif; line-height: 1.6; color: var(--text-main); background-color: var(--bg-light); }
-    a { text-decoration: none; color: inherit; }
 
-    /* 2. 네비게이션 바 */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-bright);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* 감성적인 명조체 헤딩 클래스 */
+    .serif { font-family: 'Noto Serif KR', serif; }
+
+    /* 2. 네비게이션 헤더 */
     header {
-      background: #fff;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      background: rgba(10, 12, 16, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
       position: sticky;
       top: 0;
       z-index: 1000;
     }
     .nav-container {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 20px;
+      padding: 20px;
     }
-    .logo { font-size: 24px; font-weight: bold; color: var(--primary-color); letter-spacing: -0.5px; }
-    .logo span { color: var(--secondary-color); font-size: 14px; margin-left: 6px; font-weight: normal; }
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #fff 0%, var(--accent-glow) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .logo-badge {
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 12px;
+      background: var(--accent-subtle);
+      color: var(--accent-warm);
+      border: 1px solid var(--accent-warm);
+      letter-spacing: 1px;
+    }
     .nav-menu button {
       background: none;
       border: none;
-      font-size: 16px;
-      font-weight: 600;
-      margin-left: 20px;
+      font-size: 15px;
+      font-weight: 500;
+      margin-left: 28px;
       cursor: pointer;
-      color: #666;
-      transition: color 0.3s;
+      color: var(--text-muted);
+      transition: all 0.3s ease;
+      position: relative;
     }
-    .nav-menu button.active, .nav-menu button:hover { color: var(--primary-color); }
+    .nav-menu button.active, .nav-menu button:hover {
+      color: var(--text-bright);
+    }
+    .nav-menu button.active::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--accent-warm);
+      box-shadow: 0 0 8px var(--accent-warm);
+    }
 
-    /* 3. 탭 컨텐츠 영역 (JS로 전환) */
-    .tab-content { display: none; max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+    /* 3. 탭 컨텐츠 컨테이너 */
+    .tab-content { display: none; max-width: 1200px; margin: 0 auto; padding: 60px 20px; animation: fadeIn 0.6s ease; }
     .tab-content.active { display: block; }
 
-    /* 4. 메인 탭 디자인 */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 4. 메인 (HERO) 섹션 */
     .hero {
-      background: linear-gradient(135deg, #ff6b4a 0%, #ff8e53 100%);
-      color: white;
-      padding: 80px 20px;
+      padding: 100px 20px;
       text-align: center;
+      position: relative;
+      border-radius: 24px;
+      background: radial-gradient(circle at 50% 30%, rgba(255, 94, 54, 0.15) 0%, rgba(10, 12, 16, 0) 70%);
+      border: 1px solid var(--border-color);
+      margin-bottom: 60px;
+    }
+    .hero-tag {
+      display: inline-block;
+      font-size: 13px;
+      letter-spacing: 2px;
+      color: var(--accent-warm);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+    .hero h1 {
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 24px;
+      word-break: keep-all;
+    }
+    .hero p {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: 720px;
+      margin: 0 auto 40px auto;
+      word-break: keep-all;
+    }
+
+    /* 5. 감성 카드 & 그리드 */
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 30px;
+    }
+    .section-title { font-size: 28px; font-weight: 700; }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+    
+    .glass-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
       border-radius: 16px;
+      padding: 32px;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .glass-card:hover {
+      border-color: rgba(255, 94, 54, 0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+    }
+    .card-tag {
+      font-size: 12px;
+      color: var(--accent-warm);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .glass-card h3 { font-size: 20px; margin-bottom: 12px; font-weight: 600; }
+    .glass-card p { color: var(--text-muted); font-size: 15px; }
+
+    /* 소셜 배너 (메타버스 & 인스타) */
+    .social-section {
+      background: linear-gradient(180deg, rgba(22, 27, 34, 0) 0%, rgba(255, 94, 54, 0.05) 100%);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 48px 32px;
+      text-align: center;
+    }
+    .social-btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
+    .btn-glow {
+      padding: 14px 32px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 15px;
+      color: #fff;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-zep {
+      background: #4f46e5;
+      box-shadow: 0 0 20px rgba(79, 70, 229, 0.4);
+    }
+    .btn-insta {
+      background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366);
+      box-shadow: 0 0 20px rgba(220, 39, 67, 0.4);
+    }
+    .btn-glow:hover { transform: scale(1.05); }
+
+    /* 6. 비전 탭 고급 스타일 */
+    .vision-container {
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 2;
+    }
+    .keyword-pill {
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 20px;
+      background: rgba(255, 94, 54, 0.1);
+      color: var(--accent-warm);
+      border: 1px solid rgba(255, 94, 54, 0.2);
+      font-size: 14px;
+      font-weight: 600;
+      margin-right: 8px;
+      margin-bottom: 24px;
+    }
+    .quote-box {
+      border-left: 3px solid var(--accent-warm);
+      padding-left: 24px;
+      margin: 32px 0;
+      font-size: 20px;
+      color: #fff;
+    }
+
+    /* 7. 입력 폼 감성 스타일 */
+    .form-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 36px;
       margin-bottom: 40px;
     }
-    .hero h1 { font-size: 36px; margin-bottom: 15px; }
-    .hero p { font-size: 18px; opacity: 0.95; max-width: 700px; margin: 0 auto; }
-    
-    .section-title { font-size: 24px; margin-bottom: 20px; color: var(--secondary-color); }
-    .activity-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 50px; }
-    .activity-card { background: white; border-radius: 12px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.04); }
-    .activity-card h3 { color: var(--primary-color); margin-bottom: 10px; }
-
-    /* 소셜 & 외부 링크 배너 */
-    .social-banner {
-      background: #fff;
-      border: 2px solid #eee;
-      border-radius: 16px;
-      padding: 30px;
-      text-align: center;
-      margin-top: 40px;
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-size: 14px; color: var(--text-muted); margin-bottom: 8px; }
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 14px;
+      background: rgba(10, 12, 16, 0.6);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      color: #fff;
+      font-size: 15px;
+      outline: none;
+      transition: border 0.3s;
     }
-    .social-buttons { display: flex; justify-content: center; gap: 15px; margin-top: 20px; flex-wrap: wrap; }
-    .btn-external {
-      padding: 12px 24px;
-      border-radius: 30px;
-      font-weight: bold;
-      color: white;
-      transition: transform 0.2s;
+    .form-group input:focus, .form-group select:focus {
+      border-color: var(--accent-warm);
     }
-    .btn-external:hover { transform: translateY(-3px); }
-    .btn-zep { background-color: #5c6ac4; } /* ZEP 메타버스 느낌의 보라색 */
-    .btn-insta { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-
-    /* 5. 비전 탭 디자인 */
-    .vision-box { background: white; padding: 40px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.04); }
-    .keyword-tag { display: inline-block; background: #fff0ed; color: var(--primary-color); padding: 5px 15px; border-radius: 20px; font-weight: bold; margin-right: 8px; margin-bottom: 15px; }
-
-    /* 6. 서비스 탭 디자인 */
-    .service-card { background: white; padding: 30px; border-radius: 16px; margin-bottom: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.04); }
-    .service-card h3 { border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; margin-bottom: 20px; color: var(--secondary-color); }
-    
-    /* 폼 스타일 */
-    .form-group { margin-bottom: 15px; text-align: left; }
-    .form-group label { display: block; margin-bottom: 5px; font-weight: 600; }
-    .form-group input, .form-group select, .form-group textarea {
-      width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px;
+    .btn-action {
+      width: 100%;
+      padding: 16px;
+      border-radius: 10px;
+      border: none;
+      background: var(--accent-warm);
+      color: #fff;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+      transition: opacity 0.3s;
     }
-    .btn-submit {
-      background: var(--primary-color); color: white; border: none; padding: 12px 20px; border-radius: 6px; cursor: pointer; font-weight: bold; width: 100%;
-    }
-    .btn-submit:hover { opacity: 0.9; }
-
-    /* 굿즈 그리드 */
-    .goods-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
-    .goods-item { background: #fdfdfd; border: 1px solid #eee; border-radius: 10px; padding: 15px; text-align: center; }
-    .goods-img { background: #e9ecef; height: 120px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; color: #888; }
+    .btn-action:hover { opacity: 0.9; }
 
     /* 푸터 */
-    footer { text-align: center; padding: 30px; background: #222; color: #888; font-size: 14px; margin-top: 60px; }
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding: 40px 20px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-top: 80px;
+    }
   </style>
 </head>
 <body>
 
   <header>
     <div class="nav-container">
-      <div class="logo">온결 <span>ON:GYEOL</span></div>
+      <div class="logo">
+        ON:GYEOL
+        <span class="logo-badge">SOCIAL IMPACT</span>
+      </div>
       <nav class="nav-menu">
         <button class="active" onclick="openTab('main')">메인</button>
-        <button onclick="openTab('vision')">기업 비전</button>
-        <button onclick="openTab('service')">서비스 & 신청</button>
+        <button onclick="openTab('vision')">기업 스토리</button>
+        <button onclick="openTab('service')">지원 & 구독</button>
       </nav>
     </div>
   </header>
 
   <div id="main" class="tab-content active">
     <section class="hero">
-      <h1>지역의 숨은 가치를 ON하다</h1>
-      <p>온결은 지방 불균형 해소를 위해 지역의 문화예술 소재와 청년 창업가를 연결하는 상생 플랫폼입니다.</p>
+      <span class="hero-tag">지방불균형 해소를 위한 솔루션</span>
+      <h1 class="serif">지역의 잊혀진 숨결,<br><span style="color: var(--accent-warm);">창업의 빛</span>으로 켜다 (ON)</h1>
+      <p>온결은 지역 고유의 문화예술 소재를 발굴하여 벤처 창업가와 연결하고,<br>30일간의 위험 없는 시험 창업을 통해 지역과 함께 상생합니다.</p>
     </section>
 
-    <h2 class="section-title">📢 온결 최신 활동</h2>
-    <div class="activity-grid">
-      <div class="activity-card">
-        <h3>[30일 창업] 1기 팝업스토어 오픈</h3>
-        <p>지역 공예 소재를 활용한 디저트 카페가 빈 점포를 활용해 30일간의 테스트 창업을 시작했습니다.</p>
+    <div class="section-header">
+      <h2 class="section-title serif">최신 온결 프로젝트</h2>
+      <span style="color: var(--text-muted); font-size: 14px;">ON:GYEOL ARCHIVE</span>
+    </div>
+
+    <div class="grid-3">
+      <div class="glass-card">
+        <div class="card-tag">30-DAY POP-UP</div>
+        <h3>[충남 부여] 백제 토기 재해석 팝업</h3>
+        <p>빈 점포를 매개로 한 30일간의 시험 창업. 지역 토기 장인의 소스에 현대적 디자인을 더한 카페 브랜드의 첫 도전을 지원합니다.</p>
       </div>
-      <div class="activity-card">
-        <h3>[주간지] 온결 8월호 발행</h3>
-        <p>이번 주 아날로그 주간지에서는 충청도 지역의 잊혀진 소리 문화예술 소재를 조명합니다.</p>
+      <div class="glass-card">
+        <div class="card-tag">ANALOG JOURNAL</div>
+        <h3>주간 온결 12호 : 소리의 공간</h3>
+        <p>동해안 마을의 사라져가는 어로요(漁撈謠)를 수집하여 현대 음원 스튜디오 굿즈로 융합한 청년 팀의 기획 스토리를 담았습니다.</p>
       </div>
-      <div class="activity-card">
-        <h3>[메타버스] ZEP 온결 맵 런칭</h3>
-        <p>가상 공간에서도 지역 문화예술 전시와 팝업스토어를 미리 체험해볼 수 있습니다.</p>
+      <div class="glass-card">
+        <div class="card-tag">METAVERSE ZEP</div>
+        <h3>가상 가야 문화 거리 런칭</h3>
+        <p>시공간의 제약 없이 온결의 팝업스토어를 체험하고 지역 소상공인 아이템을 미리 만나보는 가상 생태계입니다.</p>
       </div>
     </div>
 
-    <div class="social-banner">
-      <h3>온결의 가상 공간과 일상을 방문해보세요</h3>
-      <p style="color: #666; margin-top: 5px;">ZEP 메타버스 맵에서 가상 팝업스토어를 체험하고 인스타그램에서 최신 소식을 받아보세요.</p>
-      <div class="social-buttons">
-        <a href="https://zep.us" target="_blank" class="btn-external btn-zep">🎮 ZEP 메타버스 입장하기</a>
-        <a href="https://instagram.com" target="_blank" class="btn-external btn-insta">📸 공식 인스타그램 구경하기</a>
+    <div class="social-section">
+      <h2 class="serif" style="font-size: 24px; margin-bottom: 10px;">가상 세계에서 현실로 이어지는 온결의 상생</h2>
+      <p style="color: var(--text-muted);">ZEP 메타버스에서 가상 팝업스토어를 먼저 체험하고, 인스타그램에서 온결의 여정을 함께하세요.</p>
+      <div class="social-btn-group">
+        <a href="https://zep.us" target="_blank" class="btn-glow btn-zep">🎮 ZEP 가상 팝업스토어 입장</a>
+        <a href="https://instagram.com" target="_blank" class="btn-glow btn-insta">📸 공식 인스타그램 팔로우</a>
       </div>
     </div>
   </div>
 
   <div id="vision" class="tab-content">
-    <div class="vision-box">
-      <span class="keyword-tag">#지방불균형해소</span>
-      <span class="keyword-tag">#메세나</span>
-      <span class="keyword-tag">#상생기업</span>
-      <h2 style="margin-bottom: 20px; color: var(--secondary-color);">연결을 ON(활성화)하는 사회적 기업 '온결'</h2>
-      <p style="margin-bottom: 15px;">
-        '온결'은 끊어진 지역과 대중, 그리고 창업가를 따뜻하게 잇는다는 의미를 담고 있습니다. 우리는 소멸 위기에 놓인 지역의 고유한 문화예술 소재를 발굴하여 지속 가능한 상업 아이템으로 재탄생시킵니다.
+    <div class="vision-container">
+      <span class="keyword-pill">#지방불균형해소</span>
+      <span class="keyword-pill">#메세나_Mécénat</span>
+      <span class="keyword-pill">#상생비즈니스</span>
+      
+      <h1 class="serif" style="font-size: 36px; margin-bottom: 24px; color: #fff;">
+        연결을 ON(활성화)하여<br>지역의 온기를 잇다
+      </h1>
+
+      <div class="quote-box serif">
+        "지방의 소멸은 문화의 소멸이 아닙니다.<br>우리는 잊혀가는 유산에 사업의 숨결을 불어넣습니다."
+      </div>
+
+      <p style="color: var(--text-muted); margin-bottom: 20px;">
+        <strong>'온결(ON:GYEOL)'</strong>은 스위치를 켜듯 연결을 활성화(ON)한다는 의미와 따뜻한 결(온결)을 만들어낸다는 뜻을 담고 있습니다. 
       </p>
-      <p style="margin-bottom: 15px;">
-        문화예술을 지원하는 <strong>메세나(Mécénat) 정신</strong>을 기반으로 벤처기업 및 예비 창업자에게 아이디어를 제공하고, 빈 점포 중개를 통해 위험 부담 없는 <strong>30일 시험 창업</strong>을 지원합니다.
+      <p style="color: var(--text-muted); margin-bottom: 20px;">
+        우리는 고유한 문화예술을 가졌지만 소외된 지역을 찾아갑니다. 메세나 정신을 바탕으로 지역 고유의 소재를 발굴하여 창업 희망자에게 창의적인 비즈니스 모델로 제공합니다.
       </p>
-      <p>
-        테스트 기간 이후 정식 창업 시 관련 기업 및 투자 매개체로 연결하여, 지역 경제를 살리고 지속 가능한 상생 생태계를 구축합니다.
+      <p style="color: var(--text-muted);">
+        방치된 빈 점포를 중개하여 <strong>30일간의 위험 없는 테스트 창업</strong>을 돕고, 정식 창업 시 관련 기업 및 투자 매개체로 연결함으로써, 지역 경제가 스스로 숨 쉴 수 있는 선순환 선상 모델을 지속해 나갑니다.
       </p>
     </div>
   </div>
 
   <div id="service" class="tab-content">
     
-    <div class="service-card">
-      <h3>🏬 30일 시험 창업 지원 서비스 신청</h3>
-      <p style="margin-bottom: 15px; color: #666;">지역 문화예술 아이템과 빈 점포를 제공받아 30일간 팝업 매장을 직접 운영해보세요.</p>
-      <form onsubmit="alert('30일 시험 창업 신청이 완료되었습니다!'); return false;">
+    <div class="form-box">
+      <span class="card-tag">SOLUTIONS 01</span>
+      <h2 class="serif" style="font-size: 24px; margin-bottom: 8px;">30일 시험 창업 지원 서비스 신청</h2>
+      <p style="color: var(--text-muted); margin-bottom: 24px;">지역의 문화예술 소재 아이템과 공간을 중개받아 부담 없이 30일간의 팝업 매장을 검증해 보세요.</p>
+      
+      <form onsubmit="alert('30일 시험 창업 신청서가 접수되었습니다.'); return false;">
         <div class="form-group">
-          <label>신청자/팀명</label>
-          <input type="text" placeholder="이름 또는 팀명을 입력하세요" required>
+          <label>신청자 / 팀 이름</label>
+          <input type="text" placeholder="예: 온결 1기 예비창업팀" required>
         </div>
         <div class="form-group">
-          <label>관심 지역/소재</label>
+          <label>희망 문화예술 테마</label>
           <select>
-            <option>지역 전통 공예/디자인</option>
-            <option>지역 로컬 푸드/식음료</option>
-            <option>지역 스토리/미디어 콘텐츠</option>
+            <option>지역 전통 공예 & 현대 디자인</option>
+            <option>로컬 식음료(F&B) & 농산물 브랜딩</option>
+            <option>지역 음향/스토리 미디어 콘텐츠</option>
           </select>
         </div>
         <div class="form-group">
-          <label>연락처</label>
+          <label>대표자 연락처</label>
           <input type="tel" placeholder="010-0000-0000" required>
         </div>
-        <button type="submit" class="btn-submit">시험 창업 지원하기</button>
+        <button type="submit" class="btn-action">시험 창업 지원 신청하기</button>
       </form>
     </div>
 
-    <div class="service-card">
-      <h3>📰 온결 아날로그 주간지 구독</h3>
-      <p style="margin-bottom: 15px; color: #666;">매주 지역의 숨은 문화예술 이야기와 창업 종사자들의 인터뷰를 종이 신문으로 받아보세요.</p>
-      <form onsubmit="alert('주간지 구독 신청이 완료되었습니다!'); return false;">
+    <div class="form-box">
+      <span class="card-tag">SOLUTIONS 02</span>
+      <h2 class="serif" style="font-size: 24px; margin-bottom: 8px;">아날로그 주간지 [온결] 구독</h2>
+      <p style="color: var(--text-muted); margin-bottom: 24px;">매주 지역의 숨겨진 장인, 문화예술 소재, 청년 창업 인터뷰가 담긴 아날로그 종이 신문을 배송해 드립니다.</p>
+      
+      <form onsubmit="alert('주간지 구독 신청이 완료되었습니다.'); return false;">
         <div class="form-group">
-          <label>배송받을 주소</label>
-          <input type="text" placeholder="주소를 입력하세요" required>
+          <label>배송 주소</label>
+          <input type="text" placeholder="신문 및 굿즈를 수령할 주소" required>
         </div>
         <div class="form-group">
-          <label>이메일 주소</label>
-          <input type="email" placeholder="example@email.com" required>
+          <label>이메일</label>
+          <input type="email" placeholder="example@ongyeol.com" required>
         </div>
-        <button type="submit" class="btn-submit" style="background-color: var(--secondary-color);">주간지 구독 신청 (월 5,000원)</button>
+        <button type="submit" class="btn-action" style="background: var(--secondary-color); border: 1px solid var(--border-color);">주간지 정기구독 신청 (월 5,000원)</button>
       </form>
     </div>
 
-    <div class="service-card">
-      <h3>🎨 온결 로컬 굿즈 샵</h3>
-      <p style="margin-bottom: 20px; color: #666;">지역 예술가들과 협업하여 제작한 상생 굿즈입니다. 수익금 일부는 지역 문화 발전에 쓰입니다.</p>
-      <div class="goods-grid">
-        <div class="goods-item">
-          <div class="goods-img">🖼️ 패브릭 포스터</div>
-          <h4>지역 풍경 아트웍</h4>
-          <p style="color: var(--primary-color); font-weight: bold; margin-top: 5px;">15,000원</p>
-          <button onclick="alert('장바구니에 담겼습니다!')" style="margin-top: 8px; width: 100%; cursor: pointer;">구매하기</button>
+    <div>
+      <span class="card-tag">SOLUTIONS 03</span>
+      <h2 class="serif" style="font-size: 24px; margin-bottom: 20px;">온결 로컬 상생 굿즈</h2>
+      <div class="grid-3">
+        <div class="glass-card" style="text-align: center;">
+          <div style="height: 120px; background: rgba(255,255,255,0.05); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 32px; margin-bottom: 16px;">🖼️</div>
+          <h3>지역 아카이브 패브릭 포스터</h3>
+          <p style="color: var(--accent-warm); font-weight: bold; margin-top: 8px;">18,000원</p>
         </div>
-        <div class="goods-item">
-          <div class="goods-img">☕ 로컬 도자기 컵</div>
-          <h4>장인 핸드메이드 컵</h4>
-          <p style="color: var(--primary-color); font-weight: bold; margin-top: 5px;">22,000원</p>
-          <button onclick="alert('장바구니에 담겼습니다!')" style="margin-top: 8px; width: 100%; cursor: pointer;">구매하기</button>
+        <div class="glass-card" style="text-align: center;">
+          <div style="height: 120px; background: rgba(255,255,255,0.05); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 32px; margin-bottom: 16px;">☕</div>
+          <h3>장인 콜라보 도자기 세트</h3>
+          <p style="color: var(--accent-warm); font-weight: bold; margin-top: 8px;">24,000원</p>
         </div>
       </div>
     </div>
@@ -244,21 +437,18 @@
   </div>
 
   <footer>
-    <p>© 2026 사회적기업 온결 (ON:GYEOL). All rights reserved.</p>
-    <p style="font-size: 12px; margin-top: 5px;">본 웹사이트는 모의창업 프로젝트 목적으로 제작되었습니다.</p>
+    <p style="margin-bottom: 8px;">© 2026 온결 ON:GYEOL. All rights reserved.</p>
+    <p style="font-size: 12px; color: rgba(255,255,255,0.3);">지방 불균형 해소를 위한 고교 모의창업 프로젝트 플랫폼</p>
   </footer>
 
   <script>
     function openTab(tabName) {
-      // 모든 탭 내용 숨기기
       const tabContents = document.querySelectorAll('.tab-content');
       tabContents.forEach(content => content.classList.remove('active'));
 
-      // 모든 버튼 활성화 해제
       const navButtons = document.querySelectorAll('.nav-menu button');
       navButtons.forEach(button => button.classList.remove('active'));
 
-      // 선택한 탭과 버튼 활성화
       document.getElementById(tabName).classList.add('active');
       event.currentTarget.classList.add('active');
     }
